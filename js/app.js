@@ -12,23 +12,25 @@ const loadData = () => {
     .then(city => displayTempareture(city))
 }
 
-const cityInnerText = (id, text, isAdd) => {
-    if(isAdd == true){
+const cityInnerText = (id, text) => {
       document.getElementById(id).innerText = text;  
-    }
-    else{
-        document.getElementById(id).innerText = text;
-    }
-    
-
 }
 
 const displayTempareture = tempareture => {
-    console.log(tempareture);
-    cityInnerText('cityName', tempareture.name, true);
-    cityInnerText('temp', tempareture.main.temp, false);
-    
-    /* const city = document.getElementById('cityName'); this is type 1
+      /* const city = document.getElementById('cityName'); this is type 1
     city.innerText = tempareture.name;
     */
+    console.log(tempareture);
+    cityInnerText('cityName', tempareture.name);
+    cityInnerText('temp', tempareture.main.temp);
+    cityInnerText('weather', tempareture.weather[0].main);
+
+    // set attribute for image icon
+    const url = `http://openweathermap.org/img/wn/${tempareture.weather[0].icon}@2x.png`
+
+    const imgIcon = document.getElementById('imageIcon');
+
+    imgIcon.setAttribute('src', url);
+
+
 }
